@@ -1,0 +1,1 @@
+Patterns are available for download from [this link](https://photos.google.com/share/AF1QipMa6o7At0h0TEKsEa30XzgDQNaowt6wXjJEEUMCBcxvUyqyv2rTTdycvbpe7f-cXg?key=eXQ0d191QWFnSjg0cElFMVNHU1BCdlFNLWdCQUtn)
