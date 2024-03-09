@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  width: 100vw;
+  height: 100vh;
+}
+
+@layer components {
+  .bevel-border-inner {
+    border: 1px solid black;
+    box-shadow: inset 2px 2px 0 0px #FFFFFF90, inset -2px -2px 0 0px #00000025;
+  }
+
+  .bevel-border-outer {
+    border: 1px solid black;
+    box-shadow: 1px 1px 0 0px #FFFFFF90, -1px -1px 0 0px #00000025;
+  }
+}
+
+@font-face {
+  font-family: "pixChicago";
+  src: url("/fonts/pixChicago.ttf") format("truetype");
+  font-size-adjust: 0.5;
+}

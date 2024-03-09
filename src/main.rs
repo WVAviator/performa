@@ -1,8 +1,10 @@
 mod components;
 
-use leptos::*;
+use leptos::{leptos_dom::logging::console_log, *};
 
-use crate::components::background::Background;
+use crate::components::{
+    background::Background, flat_window::FlatWindow, progress_load::ProgressLoad,
+};
 
 fn main() {
     console_error_panic_hook::set_once();
@@ -13,19 +15,21 @@ fn main() {
 
 #[component]
 fn App() -> impl IntoView {
-    let (count, set_count) = create_signal(0);
     view! {
         <Background>
-            <button
-                class="py-4 px-6 bg-red-200 text-lg"
-                on:click=move |_| {
-                    set_count.update(|n| *n += 1);
-                }
-            >
+            <FlatWindow class="flex flex-col justify-center items-center px-[36px] pt-[28px] pb-[20px] absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
+                <div class="bg-white bevel-border-outer px-[70px] py-[18px]">
+                    <div class="w-[208px] h-[186px] flex flex-col items-center justify-center">
 
-                "Click me: "
-                {move || count()}
-            </button>
+                        <img src="public/images/startup_logo.png" class="" alt="macos logo"/>
+                    </div>
+                </div>
+                <ProgressLoad
+                    text="Starting up..."
+                    seconds=3
+                    on_complete=move || { console_log("Loaded") }
+                />
+            </FlatWindow>
         </Background>
     }
 }
