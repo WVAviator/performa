@@ -554,6 +554,18 @@ video {
   box-shadow: 1px 1px 0 0px #FFFFFF90, -1px -1px 0 0px #00000025;
 }
 
+.bevel-concave {
+  border: 1px solid black;
+  box-shadow: 1px 1px 1px rgba(254, 254, 254, 0.65),
+      -1px -1px 1px rgba(0, 0, 0, 0.15),
+      inset -2px -2px 1px rgba(0, 0, 0, 0.15),
+      inset -4px -4px 3px rgba(0, 0, 0, 0.15),
+      inset 2px 2px 1px rgba(0, 0, 0, 0.15),
+      inset 3px 3px 1px rgba(254, 254, 254, 0.65),
+      inset -5px -5px 5px rgba(254, 254, 254, 0.8),
+      inset 5px 5px 5px rgba(0, 0, 0, 0.15);
+}
+
 .static {
   position: static;
 }
@@ -582,6 +594,10 @@ video {
   height: 12px;
 }
 
+.h-\[16px\] {
+  height: 16px;
+}
+
 .h-\[186px\] {
   height: 186px;
 }
@@ -592,6 +608,10 @@ video {
 
 .w-\[160px\] {
   width: 160px;
+}
+
+.w-\[16px\] {
+  width: 16px;
 }
 
 .w-\[208px\] {
@@ -622,6 +642,10 @@ video {
 
 .justify-center {
   justify-content: center;
+}
+
+.gap-1 {
+  gap: 0.25rem;
 }
 
 .gap-2 {
@@ -661,6 +685,10 @@ video {
   background-color: rgb(254 254 254 / var(--tw-bg-opacity));
 }
 
+.p-1 {
+  padding: 0.25rem;
+}
+
 .px-\[36px\] {
   padding-left: 36px;
   padding-right: 36px;
@@ -689,15 +717,19 @@ video {
 }
 
 .font-chicago {
-  font-family: pixChicago, sans-serif;
+  font-family: ChicagoSystemFont, sans-serif;
 }
 
 .text-sm {
-  font-size: 0.6rem;
+  font-size: 0.75rem;
 }
 
 .font-thin {
   font-weight: 100;
+}
+
+.debug {
+  border: 1px solid red;
 }
 
 html {
@@ -706,9 +738,9 @@ html {
 }
 
 @font-face {
-  font-family: "pixChicago";
+  font-family: "ChicagoSystemFont";
 
-  src: url("/fonts/pixChicago.ttf") format("truetype");
+  src: url("public/fonts/ChicagoSystemFont.ttf") format("truetype");
 
   font-size-adjust: 0.5;
 }

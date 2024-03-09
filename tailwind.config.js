@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      "chicago": ["pixChicago", "sans-serif"],
+      "chicago": ["ChicagoSystemFont", "sans-serif"],
     },
     colors: {
       gray: "#D7D7D7",
@@ -20,9 +20,9 @@ module.exports = {
       black: "#000000",
     },
     fontSize: {
-      xs: "0.25rem",
-      sm: "0.6rem",
-      base: "0.75rem",
+      xs: "0.5rem",
+      sm: "0.75rem",
+      base: "0.875rem",
       xl: "1rem",
       "2xl": "1.5rem",
       "3xl": "2rem",

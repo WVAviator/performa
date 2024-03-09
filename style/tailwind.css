@@ -7,6 +7,12 @@ html {
   height: 100vh;
 }
 
+@layer utilities {
+  .debug {
+    border: 1px solid red;
+  }
+}
+
 @layer components {
   .bevel-border-inner {
     border: 1px solid black;
@@ -17,10 +23,24 @@ html {
     border: 1px solid black;
     box-shadow: 1px 1px 0 0px #FFFFFF90, -1px -1px 0 0px #00000025;
   }
+
+  .bevel-concave {
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px rgba(254, 254, 254, 0.65),
+      -1px -1px 1px rgba(0, 0, 0, 0.15),
+      inset -2px -2px 1px rgba(0, 0, 0, 0.15),
+      inset -4px -4px 3px rgba(0, 0, 0, 0.15),
+      inset 2px 2px 1px rgba(0, 0, 0, 0.15),
+      inset 3px 3px 1px rgba(254, 254, 254, 0.65),
+      inset -5px -5px 5px rgba(254, 254, 254, 0.8),
+      inset 5px 5px 5px rgba(0, 0, 0, 0.15);
+
+
+  }
 }
 
 @font-face {
-  font-family: "pixChicago";
-  src: url("/fonts/pixChicago.ttf") format("truetype");
+  font-family: "ChicagoSystemFont";
+  src: url("public/fonts/ChicagoSystemFont.ttf") format("truetype");
   font-size-adjust: 0.5;
 }
