@@ -37,6 +37,23 @@ pub fn AppWindow(children: Children, title: String) -> impl IntoView {
 
             <div class="debug flex gap-1 p-1">
                 <div class="bevel-concave w-[16px] h-[16px]"></div>
+                <div class="drag-bar flex-grow">
+                    <div class="drag-bar-row"></div>
+                    <div class="drag-bar-row"></div>
+                    <div class="drag-bar-row"></div>
+                    <div class="drag-bar-row"></div>
+                    <div class="drag-bar-row"></div>
+                    <div class="drag-bar-row"></div>
+                </div>
+                <h2>{title}</h2>
+                <div class="drag-bar flex-grow">
+                    <div class="drag-bar-row"></div>
+                    <div class="drag-bar-row"></div>
+                    <div class="drag-bar-row"></div>
+                    <div class="drag-bar-row"></div>
+                    <div class="drag-bar-row"></div>
+                    <div class="drag-bar-row"></div>
+                </div>
             </div>
             <div class="p-2">
                 <div class="bg-white bevel-border-outer">{children()}</div>
