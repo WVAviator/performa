@@ -1,7 +1,5 @@
 use leptos::*;
 
-use crate::components::flat_window::FlatWindow;
-
 struct WindowState {
     collapsed: bool,
     minimized: bool,
@@ -38,9 +36,11 @@ pub fn AppWindow(children: Children, title: String) -> impl IntoView {
         >
 
             <div class="debug flex gap-1 p-1">
-                <div class="bevel-concave bg-gray w-[16px] h-[16px]"></div>
+                <div class="bevel-concave w-[16px] h-[16px]"></div>
             </div>
-            <div class="bg-white"></div>
+            <div class="p-2">
+                <div class="bg-white bevel-border-outer">{children()}</div>
+            </div>
         </div>
     }
 }

@@ -1,10 +1,10 @@
 mod components;
 
-use leptos::{leptos_dom::logging::console_log, *};
+use leptos::*;
 
 use crate::components::{
-    app_window::AppWindow, background::Background, flat_window::FlatWindow,
-    progress_load::ProgressLoad, startup_load::StartupLoad,
+    app_window::AppWindow, background::Background, progress_load::ProgressLoad,
+    startup_load::StartupLoad,
 };
 
 fn main() {
