@@ -14,15 +14,15 @@ pub fn AppWindow(children: Children, title: String) -> impl IntoView {
     let (window_state, set_window_state) = create_signal(|| WindowState {
         collapsed: false,
         minimized: false,
-        width: 200.0,
-        height: 100.0,
+        width: 400.0,
+        height: 200.0,
         x: 50.0,
         y: 50.0,
     });
 
     view! {
         <div
-            class="absolute bg-gray bevel-border-inner"
+            class="absolute scale-[0.5] bg-gray bevel-border-inner"
             style=move || {
                 let state = window_state();
                 format!(
@@ -35,28 +35,53 @@ pub fn AppWindow(children: Children, title: String) -> impl IntoView {
             }
         >
 
-            <div class="debug flex gap-1 p-1">
-                <div class="bevel-concave w-[16px] h-[16px]"></div>
-                <div class="drag-bar flex-grow">
-                    <div class="drag-bar-row"></div>
-                    <div class="drag-bar-row"></div>
-                    <div class="drag-bar-row"></div>
-                    <div class="drag-bar-row"></div>
-                    <div class="drag-bar-row"></div>
-                    <div class="drag-bar-row"></div>
+            <div class=" h-[38px] px-2 flex gap-2 items-center">
+                <button class="close-button"></button>
+                <div class="flex-grow flex flex-col">
+                    {(0..6)
+                        .map(|_| {
+                            view! {
+                                <div class="">
+                                    <div class="pr-[2px]">
+                                        <div class="h-[2px] bg-[#DDDDDD]"></div>
+                                    </div>
+                                    <div class="pl-[2px]">
+                                        <div class="h-[2px] bg-[#999999]"></div>
+                                    </div>
+                                </div>
+                            }
+                        })
+                        .collect_view()}
+
                 </div>
-                <h2>{title}</h2>
-                <div class="drag-bar flex-grow">
-                    <div class="drag-bar-row"></div>
-                    <div class="drag-bar-row"></div>
-                    <div class="drag-bar-row"></div>
-                    <div class="drag-bar-row"></div>
-                    <div class="drag-bar-row"></div>
-                    <div class="drag-bar-row"></div>
+                <h2 class="m-0 font-chicago text-slate text-[20px]">{title}</h2>
+                <div class="flex-grow flex flex-col">
+                    {(0..6)
+                        .map(|_| {
+                            view! {
+                                <div class="">
+                                    <div class="pr-[2px]">
+                                        <div class="h-[2px] bg-[#DDDDDD]"></div>
+                                    </div>
+                                    <div class="pl-[2px]">
+                                        <div class="h-[2px] bg-[#999999]"></div>
+                                    </div>
+                                </div>
+                            }
+                        })
+                        .collect_view()}
+
                 </div>
+
+                <button class="close-button">
+                    <div class="mini-frame"></div>
+                </button>
+                <button class="close-button">
+                    <div class="collapse-frame"></div>
+                </button>
             </div>
-            <div class="p-2">
-                <div class="bg-white bevel-border-outer">{children()}</div>
+            <div class="px-2">
+                <div class="bg-white min-h-[100px] bevel-border-outer">{children()}</div>
             </div>
         </div>
     }
