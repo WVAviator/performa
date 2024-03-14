@@ -51,67 +51,106 @@ pub fn AppWindow(children: ChildrenFn, title: String) -> impl IntoView {
 
     view! {
         <div
-            class="absolute bg-gray bevel-border-inner flex flex-col"
+            class="absolute origin-top-left scale-[0.5] bg-gray bevel-border-inner flex flex-col"
             style=move || {
                 format!(
                     "top: {}px; left: {}px; height: {}px;",
                     y(),
                     x(),
-                    if collapsed() { 40.0 } else { height() },
+                    if collapsed() {
+                        40.0
+                    } else {
+                        match minimized() {
+                            true => 240.0,
+                            false => height(),
+                        }
+                    },
                 )
             }
         >
 
-            <div class=" h-[38px] px-2 flex gap-2 items-center" style=move || format!("width: {};", width())>
-                <button class="close-button cursor-auto active:brightness-50"></button>
-                <div class="flex-grow flex flex-col">
-                    {(0..6)
-                        .map(|_| {
-                            view! {
-                                <div class="">
-                                    <div class="pr-[2px]">
-                                        <div class="h-[2px] bg-[#DDDDDD]"></div>
-                                    </div>
-                                    <div class="pl-[2px]">
-                                        <div class="h-[2px] bg-[#999999]"></div>
-                                    </div>
-                                </div>
-                            }
-                        })
-                        .collect_view()}
+            <div class="relative w-full h-full flex flex-col">
+                <div
+                    class=" h-[38px] px-2 flex gap-2 items-center"
+                    style=move || {
+                        format!(
+                            "width: {};",
+                            match minimized() {
+                                true => 200.0,
+                                false => width(),
+                            },
+                        )
+                    }
+                >
 
+                    <button class="close-button cursor-auto active:brightness-50"></button>
+                    <div class="flex-grow flex flex-col min-w-4">
+                        {(0..6)
+                            .map(|_| {
+                                view! {
+                                    <div class="">
+                                        <div class="pr-[2px]">
+                                            <div class="h-[2px] bg-[#DDDDDD]"></div>
+                                        </div>
+                                        <div class="pl-[2px]">
+                                            <div class="h-[2px] bg-[#999999]"></div>
+                                        </div>
+                                    </div>
+                                }
+                            })
+                            .collect_view()}
+
+                    </div>
+                    <div class="flex items-center overflow-hidden">
+                        <h2 class="m-0 font-chicago text-slate text-[20px]">{title}</h2>
+                    </div>
+                    <div class="flex-grow flex flex-col min-w-4">
+                        {(0..6)
+                            .map(|_| {
+                                view! {
+                                    <div class="">
+                                        <div class="pr-[2px]">
+                                            <div class="h-[2px] bg-[#DDDDDD]"></div>
+                                        </div>
+                                        <div class="pl-[2px]">
+                                            <div class="h-[2px] bg-[#999999]"></div>
+                                        </div>
+                                    </div>
+                                }
+                            })
+                            .collect_view()}
+
+                    </div>
+
+                    <button
+                        class="close-button cursor-auto active:brightness-50"
+                        on:click=move |e| {
+                            e.stop_propagation();
+                            set_minimized(!minimized());
+                        }
+                    >
+
+                        <div class="mini-frame"></div>
+                    </button>
+                    <button
+                        class="close-button cursor-auto active:brightness-50"
+                        on:click=move |e| {
+                            e.stop_propagation();
+                            set_collapsed(!collapsed());
+                        }
+                    >
+
+                        <div class="collapse-frame"></div>
+                    </button>
                 </div>
-                <h2 class="m-0 font-chicago text-slate text-[20px]">{title}</h2>
-                <div class="flex-grow flex flex-col">
-                    {(0..6)
-                        .map(|_| {
-                            view! {
-                                <div class="">
-                                    <div class="pr-[2px]">
-                                        <div class="h-[2px] bg-[#DDDDDD]"></div>
-                                    </div>
-                                    <div class="pl-[2px]">
-                                        <div class="h-[2px] bg-[#999999]"></div>
-                                    </div>
-                                </div>
-                            }
-                        })
-                        .collect_view()}
-
-                </div>
-
-                <button class="close-button cursor-auto active:brightness-50">
-                    <div class="mini-frame"></div>
-                </button>
-                <button class="close-button cursor-auto active:brightness-50" on:click=move |_| { set_collapsed(!collapsed()); }>
-                    <div class="collapse-frame"></div>
-                </button>
+                <Show when=move || !collapsed()>
+                    <div class="px-2 pb-2 flex-1 relative">
+                        <div class="bg-white bevel-border-outer h-full">
+                            {children.with_value(|children| children())}
+                        </div>
+                    </div>
+                </Show>
             </div>
-            <Show when=move || !collapsed()>
-                <div class="px-2 pb-2 flex-1 relative" >
-                    <div class="bg-white bevel-border-outer h-full">{children.with_value(|children| children())}</div>
-                </div>
-            </Show>
         </div>
     }
 }
